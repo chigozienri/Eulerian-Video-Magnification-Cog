@@ -1,10 +1,10 @@
 import argparse
 import os
 
-from constants import gaussian_kernel
-from gaussian_pyramid import filterGaussianPyramids, getGaussianPyramids
-from laplacian_pyramid import filterLaplacianPyramids, getLaplacianPyramids
-from processing import (getGaussianOutputVideo, getLaplacianOutputVideo,
+from .constants import gaussian_kernel
+from .gaussian_pyramid import filterGaussianPyramids, getGaussianPyramids
+from .laplacian_pyramid import filterLaplacianPyramids, getLaplacianPyramids
+from .processing import (getGaussianOutputVideo, getLaplacianOutputVideo,
                         loadVideo, saveVideo)
 
 
