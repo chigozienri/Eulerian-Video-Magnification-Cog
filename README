@@ -7,7 +7,8 @@
 
 
 DESCRIPTION
-    Eulerian Video Magnification for colors and motions magnification
+    This is an implementation of [Eulerian Video Magnification](https://people.csail.mit.edu/mrub/evm/) by Hao-Yu Wu et al. as a [Cog](https://github.com/replicate/cog) model. The implementation is based on [one by Hussem Ben Belgacem](https://github.com/hbenbel/Eulerian-Video-Magnification)
+    It allows maginification of temporal changes in video, including colour and space.
 
 INSTALLATION
     pip install -e .
@@ -43,3 +44,4 @@ REFERENCES
 
 CONTRIBUTORS
     Hussem Ben Belgacem
+    Chigozie Nri
