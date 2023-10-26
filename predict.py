@@ -1,6 +1,7 @@
 # Prediction interface for Cog ⚙️
 # https://github.com/replicate/cog/blob/main/docs/python.md
 
+import subprocess
 import tempfile
 
 from cog import BasePredictor, Input, Path
@@ -54,8 +55,30 @@ class Predictor(BasePredictor):
             kwargs["lambda_cutoff"] = lambda_cutoff
             output_video = laplacian_evm(**kwargs)
 
+        saving_path = "output.avi"
+        saveVideo(video=output_video, saving_path=str(saving_path), fps=fps)
+
         # To output `cog.Path` objects the file needs to exist, so create a temporary file first.
         # This file will automatically be deleted by Cog after it has been returned.
-        saving_path = Path(tempfile.mkdtemp()) / "output.avi"
-        saveVideo(video=output_video, saving_path=str(saving_path), fps=fps)
-        return Path(saving_path)
+        mp4_path = Path(tempfile.mkdtemp()) / "output.mp4"
+
+        # Convert to mp4
+        ffmpeg_command = [
+            "ffmpeg",
+            "-i",
+            saving_path,
+            "-c:v",
+            "libx264",
+            "-crf",
+            "23",
+            "-c:a",
+            "aac",
+            "-strict",
+            "-2",
+            mp4_path,
+        ]
+
+        # Execute the command
+        subprocess.call(ffmpeg_command)
+
+        return Path(mp4_path)
